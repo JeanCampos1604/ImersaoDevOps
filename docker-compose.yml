@@ -1,0 +1,21 @@
+# A seção 'services' é onde definimos os contêineres que compõem nossa aplicação.
+services:
+  # 'api' é o nome que damos ao nosso serviço/contêiner da aplicação.
+  api:
+    # 'build: .' instrui o Docker Compose a construir uma imagem a partir do
+    # Dockerfile localizado no diretório atual (.).
+    build: .
+    # 'container_name' define um nome fixo para o contêiner, facilitando a referência
+    # em comandos como 'docker logs api'.
+    container_name: api
+    # 'ports' mapeia uma porta do seu computador (host) para uma porta do contêiner.
+    # "8000:8000" significa: a porta 8000 do seu PC se conecta à porta 8000 do contêiner,
+    # onde a aplicação FastAPI está rodando.
+    ports:
+      - "8000:8000"
+    # 'volumes' sincroniza um diretório do seu computador com um diretório dentro do contêiner.
+    # '.:/app' monta o diretório atual do projeto ('.') no diretório '/app' do contêiner.
+    # Isso é ideal para desenvolvimento, pois as alterações no código são refletidas instantaneamente
+    # sem a necessidade de reconstruir a imagem.
+    volumes:
+      - .:/app
